@@ -1,16 +1,16 @@
-import {UserType} from "../models/user";
+import { UserType } from "../models/user"
 
-let currentUser: UserType;
+let currentUser: UserType
 
 const setCurrentUserState = (user: UserType) => {
-    currentUser = user;
+	currentUser = user
 }
 
-const getCurrentUserState = () : UserType => {
-    return currentUser;
+const getCurrentUserState = (): UserType => {
+	return currentUser
 }
 
 export {
-    setCurrentUserState,
-    getCurrentUserState,
+	setCurrentUserState,
+	getCurrentUserState,
 }

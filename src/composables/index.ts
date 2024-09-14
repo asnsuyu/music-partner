@@ -1,5 +1,5 @@
-import { timeFormat } from './timeFormat'
+import { timeFormat } from "./timeFormat"
 
 export {
-	timeFormat
+	timeFormat,
 }
