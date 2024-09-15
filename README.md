@@ -11,7 +11,7 @@
 
 👉 点击 [这里](https://partner.asnpro.icu) 可以在线体验该系统！（推荐使用 **移动端** 访问）
 
-
+❗ 本仓库包含该项目的完整 **前端** 代码
 
 ## 技术选型
 
@@ -20,8 +20,6 @@
 - [Axios](https://axios-http.com/) <img src="./doc/logo_188x28_axios.png" alt="Axios" height="14px">
 - [Vant](https://vant-ui.github.io/vant/v3/#/zh-CN) <img src="./doc/logo_32x32_vant.png" alt="Vant" height="20px">
 - [Vite](https://vitejs.dev/) <img src="./doc/logo_32x32_vite.png" alt="Vite" height="20px">
-
-
 
 ## 项目展示
 
@@ -36,8 +34,6 @@
 用户管理
 
 ![](./doc/demo_user_page.png)
-
-
 
 ## 依赖安装
 
@@ -58,4 +54,3 @@ yarn run dev
 ```bash
 yarn run build
 ```
-
