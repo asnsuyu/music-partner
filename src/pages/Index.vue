@@ -33,13 +33,11 @@
 	const userList = ref([])
 	const loading = ref(true)
 
-	// 获取用户登录态
-	const doLogin = async () => {
-		currentUser.value = await getCurrentUser()
-	}
-
 	// 请求数据
 	const loadData = async () => {
+		// 获取用户登录态
+		currentUser.value = await getCurrentUser()
+
 		let userListData
 		loading.value = true
 
@@ -88,7 +86,6 @@
 	}
 
 	onMounted(() => {
-		doLogin()
 		loadData()
 	})
 
