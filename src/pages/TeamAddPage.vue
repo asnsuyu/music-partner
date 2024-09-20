@@ -80,7 +80,7 @@
 	import { ref, watch } from "vue"
 	import myAxios from "../plugins/myAxios"
 	import { Toast } from "vant"
-	import { timeFormat } from "../composables"
+	import { formatTime } from "../composables"
 
 	const router = useRouter()
 
@@ -123,7 +123,7 @@
 
 	const handelConfirm = () => {
 		showPicker.value = false
-		formatExpireTime.value = timeFormat(addTeamData.value.expireTime ?? "")
+		formatExpireTime.value = formatTime(addTeamData.value.expireTime ?? "")
 	}
 </script>
 

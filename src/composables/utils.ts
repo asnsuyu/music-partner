@@ -1,4 +1,8 @@
-export const timeFormat = (time: string = "") => {
+/**
+ * 格式化时间
+ * @param time
+ */
+export const formatTime = (time: string = "") => {
 	const date = new Date(time)
 	const options = {
 		year: "numeric",

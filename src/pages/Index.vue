@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-	import { ref, watchEffect } from "vue"
+	import { onMounted, ref, watch, watchEffect } from "vue"
 	import myAxios from "../plugins/myAxios"
 	import { Toast } from "vant"
 	import UserCardList from "../components/UserCardList.vue"
@@ -33,17 +33,18 @@
 	const userList = ref([])
 	const loading = ref(true)
 
-	/**
-	 * 加载数据
-	 */
+	// 获取用户登录态
+	const doLogin = async () => {
+		currentUser.value = await getCurrentUser()
+	}
+
+	// 请求数据
 	const loadData = async () => {
 		let userListData
 		loading.value = true
 
 		// 首页匹配模式，根据标签匹配用户
 		if (isMatchMode.value) {
-			// 首页匹配模式必须在 已登录 的状态下才能使用
-			currentUser.value = await getCurrentUser()
 			const num = 10
 			userListData = await myAxios.get("/user/match", {
 				params: {
@@ -62,7 +63,7 @@
 			// 普通模式，直接分页查询用户
 			userListData = await myAxios.get("/user/recommend", {
 				params: {
-					pageSize: 8,
+					pageSize: 10,
 					pageNum: 1,
 				},
 			})
@@ -86,10 +87,14 @@
 		loading.value = false
 	}
 
-	watchEffect(() => {
+	onMounted(() => {
+		doLogin()
 		loadData()
 	})
 
+	watch(isMatchMode, () => {
+		loadData()
+	})
 </script>
 
 <style scoped>

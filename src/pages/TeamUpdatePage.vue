@@ -73,7 +73,7 @@
 	import { onMounted, ref, watch } from "vue"
 	import myAxios from "../plugins/myAxios"
 	import { Toast } from "vant"
-	import { timeFormat } from "../composables"
+	import { formatTime } from "../composables"
 
 	const router = useRouter()
 	const route = useRoute()
@@ -105,7 +105,7 @@
 			})
 			if (res?.code === 0) {
 				addTeamData.value = res.data
-				formatExpireTime.value = timeFormat(addTeamData.value?.expireTime)
+				formatExpireTime.value = formatTime(addTeamData.value?.expireTime)
 				radioChecked.value = addTeamData.value?.status.toString()
 			} else {
 				Toast.fail("加载小组失败，请刷新重试")
@@ -139,7 +139,7 @@
 	 */
 	const handelConfirm = () => {
 		showPicker.value = false
-		formatExpireTime.value = timeFormat(addTeamData.value.expireTime)
+		formatExpireTime.value = formatTime(addTeamData.value.expireTime)
 	}
 
 	/**

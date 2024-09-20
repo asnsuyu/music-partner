@@ -3,13 +3,16 @@
 		<van-form @submit="onSubmit">
 			<van-cell-group inset>
 				<van-field
-					v-model="userAccount"
+					:modelValue="userAccount ?? 'test01'"
+					@input="onAccountInput"
 					name="userAccount"
 					label="账号"
 					placeholder="账号为 test + 数字，例如：test01"
 					:rules="[{ required: true, message: '请填写用户名' }]"
 				/>
 				<van-field
+					:modelValue="userPassword ?? '12345678'"
+					@input="onPassswordInput"
 					v-model="userPassword"
 					type="password"
 					name="userPassword"
@@ -36,13 +39,13 @@
 	const router = useRouter()
 	const route = useRoute()
 
-	const userAccount = ref("")
-	const userPassword = ref("")
+	const userAccount = ref<string | undefined>(undefined)
+	const userPassword = ref<string | undefined>(undefined)
 
 	const onSubmit = async () => {
 		const res = await myAxios.post("/user/login", {
-			userAccount: userAccount.value,
-			userPassword: userPassword.value,
+			userAccount: userAccount.value ?? "test01",
+			userPassword: userPassword.value ?? "12345678",
 		})
 		if (res.code === 0 && res.data) {
 			Toast("登录成功")
@@ -53,6 +56,14 @@
 		}
 	}
 
+	const onAccountInput = (e: any) => {
+		userAccount.value = e.target.value
+		console.log("userAccount:", userAccount.value)
+	}
+	const onPassswordInput = (e: any) => {
+		userPassword.value = e.target.value
+		console.log("userPassword:", userPassword.value)
+	}
 </script>
 
 <style scoped>

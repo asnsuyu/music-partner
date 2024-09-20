@@ -20,7 +20,7 @@
 
 		<van-cell
 			:value="user.gender === 0 ? '男' : '女'"
-			@click="doEdit('gender', '性别', user.gender)"
+			@click="doEdit('gender', '性别', user.gender === 0 ? '男' : '女')"
 			title='性别'
 			is-link to='/user/edit'
 		/>
@@ -39,7 +39,7 @@
 			is-link to='/user/edit'
 		/>
 
-		<van-cell :value='formatTime' title='注册时间' />
+		<van-cell :value='formatTimeText' title='注册时间' />
 	</template>
 </template>
 
@@ -47,14 +47,15 @@
 	import { useRouter } from 'vue-router'
 	import { onMounted, ref } from 'vue'
 	import { getCurrentUser } from '../services/user'
-	import { timeFormat } from '../composables'
+	import { formatTime } from '../composables'
 	import { UserType } from '../models/user'
+	import { genderEnum } from "../constants"
 
 	const user = ref<UserType>()
-	const formatTime = ref<string>()
+	const formatTimeText = ref<string>()
 	onMounted(async () => {
 		user.value = await getCurrentUser()
-		formatTime.value = timeFormat(user.value?.createTime.toString())
+		formatTimeText.value = formatTime(user.value?.createTime.toString())
 	})
 
 	const router = useRouter()

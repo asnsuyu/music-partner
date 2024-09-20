@@ -37,8 +37,8 @@
 
 			<template #bottom>
 				<p class="desc-box desc-box--margin">{{ `小组人数: ${team.hasJoinNum}/${team.maxNum}` }}</p>
-				<p class="desc-box desc-box--margin">{{ `过期时间: ${timeFormat(team.expireTime.toString())}` }}</p>
-				<p class="desc-box desc-box--margin">{{ "创建时间: " + timeFormat(team.createTime.toString()) }}</p>
+				<p class="desc-box desc-box--margin">{{ `过期时间: ${formatTime(team.expireTime.toString())}` }}</p>
+				<p class="desc-box desc-box--margin">{{ "创建时间: " + formatTime(team.createTime.toString()) }}</p>
 			</template>
 
 			<template #footer>
@@ -101,7 +101,7 @@
 	import { onMounted, ref } from "vue"
 	import { getCurrentUser } from "../services/user"
 	import { useRouter } from "vue-router"
-	import { timeFormat } from "../composables"
+	import { formatTime } from "../composables"
 
 	interface TeamCardListProps {
 		teamList: TeamType[];
